@@ -5,7 +5,12 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 
 const ENTRY =
-  "I pushed it to check whether it was a glass or a bell, and the floor's verdict was glass, so the experiment succeeded and the glass simply failed its part.";
+  "I pushed it to test whether it was a glass or a bell — the floor ruled glass, so the experiment succeeded and the glass simply failed its part.";
+
+// Self-check the competition gate: one line, 1–200 UTF-8 characters.
+if ([...ENTRY].length < 1 || [...ENTRY].length > 200 || ENTRY.includes("\n")) {
+  throw new Error("ENTRY violates the 1–200 character single-line gate");
+}
 
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", ENTRY, "utf8");
